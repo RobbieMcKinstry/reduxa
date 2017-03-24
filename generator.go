@@ -49,7 +49,7 @@ func Generate() (files []string, err error) {
 
 	g := &Generator{outDir: outDir, timeout: timeout, scheme: scheme, host: host, api: design.Design}
 
-	return g.Generate(design.Design)
+	return g.Generate()
 }
 
 // Generate produces the skeleton main.
@@ -63,7 +63,7 @@ func (g *Generator) Generate() (_ []string, err error) {
 	}()
 
 	if g.scheme == "" && len(g.api.Schemes) > 0 {
-		g.scheme = api.Schemes[0]
+		g.scheme = g.api.Schemes[0]
 	}
 	if g.scheme == "" {
 		g.scheme = "http"
